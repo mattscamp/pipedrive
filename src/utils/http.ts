@@ -1,35 +1,35 @@
-import request from "request-promise";
+import axios from 'axios';
 
 export default class HttpHandler {
-    static async get(url: string, body: any, authKey?: string): Promise<any> {
+    static async get(url: string, data: any, authKey?: string): Promise<any> {
         try {
-            const res = await request(url, {
-                headers: {
+            const res = await axios({ 
+                method: 'GET', 
+                url,
+                headers:  {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': `Basic ${authKey}`
-                },
-                body: JSON.stringify(body),
-                json: true,
-                method: 'GET'
+                }, 
+                data
             });
-            return res;
+            return res.data;
         } catch (e) {
             throw e;
         }
     }
 
-    static async post(url: string, body: any, authKey?: string): Promise<any> {
+    static async post(url: string, data: any, authKey?: string): Promise<any> {
         try {
-            const res = await request(url, {
-                headers: {
+            const res = await axios({ 
+                method: 'POST', 
+                url,
+                headers:  {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': `Basic ${authKey}`
-                },
-                body: JSON.stringify(body),
-                json: true,
-                method: 'POST'
+                }, 
+                data
             });
-            return res;
+            return res.data;
         } catch (e) {
             throw e;
         }

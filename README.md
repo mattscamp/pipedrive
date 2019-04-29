@@ -1,6 +1,6 @@
 # Pipedrive OAuth API Wrapper
 
-A library for interfacing with Pipedrive's OAuth API. Auto refreshes tokens for you.
+An early stage library for interfacing with Pipedrive's OAuth API and auto refreshes tokens for you.
 
 ### Usage
 
