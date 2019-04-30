@@ -1,5 +1,7 @@
 # Pipedrive OAuth API Wrapper
 
+IN DEVELOPMENT - VERY FEW ENDPOINTS IMPLEMENTED!
+
 An early stage library for interfacing with Pipedrive's OAuth API and auto refreshes tokens for you.
 
 ### Usage

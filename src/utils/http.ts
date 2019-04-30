@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as qs from 'qs'
+import { formatParams } from './format'
 
 export default class HttpHandler {
   static async get(url: string, data: any, authKey?: string): Promise<any> {
@@ -11,9 +12,9 @@ export default class HttpHandler {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${authKey}`
         },
-        params: data
+        params: formatParams(data)
       })
-      return res.data
+      return res.data ? res.data : {}
     } catch (e) {
       throw e
     }
@@ -28,9 +29,26 @@ export default class HttpHandler {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${authKey}`
         },
-        data: qs.stringify(data)
+        data: qs.stringify(formatParams(data))
       })
-      return res.data
+      return res.data ? res.data : {}
+    } catch (e) {
+      throw e
+    }
+  }
+
+  static async put(url: string, data: any, authKey?: string): Promise<any> {
+    try {
+      const res = await axios({
+        method: 'PUT',
+        url,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Basic ${authKey}`
+        },
+        data: qs.stringify(formatParams(data))
+      })
+      return res.data ? res.data : {}
     } catch (e) {
       throw e
     }

@@ -16,7 +16,7 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: DESTINATION,
-        library: 'beta',
+        library: 'PipedriveApi',
         libraryTarget: 'umd',
         globalObject: "typeof self !== 'undefined' ? self : this"
     },
