@@ -10,6 +10,17 @@ describe('OAuth2 test', () => {
     nock.cleanAll()
   })
 
+  it('Should pass', async () => {
+    const conn = new Connection({
+      clientId: 'a999405ac2ebe61f',
+      clientSecret: 'aa90c217ad4e6169c8250de0f525ce8a825914af'
+    })
+    const state = await conn.oauth2.getToken(
+      '5814090.8947397.74b9ffeef68c925cac9f91eb33bfadefaf4c6ee0',
+      'https://mailshake-dev.ngrok.io/interstitial/crm-connected/'
+    )
+  })
+
   it('Should set and return an auth state', async () => {
     nock('https://oauth.pipedrive.com/oauth')
       .intercept('/token', 'POST')

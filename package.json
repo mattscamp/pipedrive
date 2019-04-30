@@ -1,6 +1,6 @@
 {
   "name": "pipedrive-api",
-  "version": "0.0.7-alpha",
+  "version": "0.0.11-alpha",
   "description": "",
   "keywords": [],
   "main": "dist/main.bundle.js",
@@ -122,6 +122,8 @@
     "webpack-dev-server": "3.1.4"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "@types/qs": "^6.5.3",
+    "axios": "^0.18.0",
+    "qs": "^6.7.0"
   }
 }
