@@ -10,7 +10,7 @@ export default class HttpHandler {
         url,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${authKey}`
+          Authorization: `Bearer ${authKey}`
         },
         params: formatParams(data)
       })
@@ -44,7 +44,7 @@ export default class HttpHandler {
         url,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${authKey}`
+          Authorization: `Bearer ${authKey}`
         },
         data: qs.stringify(formatParams(data))
       })
