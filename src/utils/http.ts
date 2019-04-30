@@ -20,14 +20,14 @@ export default class HttpHandler {
     }
   }
 
-  static async post(url: string, data: any, authKey?: string): Promise<any> {
+  static async post(url: string, data: any, authKey?: string, isBasic?: boolean): Promise<any> {
     try {
       const res = await axios({
         method: 'POST',
         url,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${authKey}`
+          Authorization: `${isBasic ? 'Basic' : 'Bearer'} ${authKey}`
         },
         data: qs.stringify(formatParams(data))
       })

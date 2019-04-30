@@ -70,7 +70,8 @@ export class OAuth2 {
         code,
         redirectUri: redirectUri
       },
-      this.authKey
+      this.authKey,
+      true
     )
     return (this._authState = {
       accessToken: res.access_token,
@@ -92,7 +93,8 @@ export class OAuth2 {
         grantType: 'refresh_token',
         refreshToken: token
       },
-      this.authKey
+      this.authKey,
+      true
     )
     this._authState = {
       accessToken: res.access_token,
