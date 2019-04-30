@@ -1,12 +1,20 @@
 import { EventEmitter } from 'events'
 import { OAuth2 } from './oauth'
 import Deals from './endpoints/deals'
+import Pipelines from './endpoints/pipelines'
+import Persons from './endpoints/persons'
+import DealFields from './endpoints/deal-fields'
+import Users from './endpoints/users'
 
 export default class Connection {
   events: EventEmitter
   oauth2: OAuth2
   endpoints: any = {
-    Deals
+    Deals,
+    Pipelines,
+    Persons,
+    DealFields,
+    Users
   }
 
   constructor(auth: {
