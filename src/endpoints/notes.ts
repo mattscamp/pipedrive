@@ -14,9 +14,9 @@ export default class Notes {
     personId?: number
     orgId?: number
     addTime?: string
-    pinnedToDealFlag: number
-    pinnedToOrganizationFlag: number
-    pinnedToPersonFlag: number
+    pinnedToDealFlag?: number
+    pinnedToOrganizationFlag?: number
+    pinnedToPersonFlag?: number
   }) {
     const res = await HttpHandler.post(`${this.baseUrl}`, params, this.authToken)
     return res

@@ -80,7 +80,7 @@ export default class Deals {
     addTime?: string
     visibleTo?: number
   }) {
-    const res = await HttpHandler.put(`${this.baseUrl}`, params, this.authToken)
+    const res = await HttpHandler.put(`${this.baseUrl}/${params.id}`, params, this.authToken)
     return res
   }
 }
