@@ -5,6 +5,8 @@ import Pipelines from './endpoints/pipelines'
 import Persons from './endpoints/persons'
 import DealFields from './endpoints/deal-fields'
 import Users from './endpoints/users'
+import Stages from './endpoints/stages'
+import Notes from './endpoints/notes'
 
 export default class Connection {
   events: EventEmitter
@@ -14,7 +16,9 @@ export default class Connection {
     Pipelines,
     Persons,
     DealFields,
-    Users
+    Users,
+    Stages,
+    Notes
   }
 
   constructor(auth: {
