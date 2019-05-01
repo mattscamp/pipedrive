@@ -18,4 +18,15 @@ export default class Persons {
     const res = await HttpHandler.get(`${this.baseUrl}/find`, params, this.authToken)
     return res
   }
+
+  async deals(params: {
+    id: number
+    start?: number
+    limit?: number
+    status?: number
+    sort?: string
+  }) {
+    const res = await HttpHandler.get(`${this.baseUrl}/${params.id}/deals`, params, this.authToken)
+    return res
+  }
 }

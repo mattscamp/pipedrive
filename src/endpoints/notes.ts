@@ -9,7 +9,7 @@ export default class Notes {
   }
 
   async add(params: {
-    constent: string
+    content: string
     dealId?: number
     personId?: number
     orgId?: number
