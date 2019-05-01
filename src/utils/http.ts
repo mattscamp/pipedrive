@@ -16,7 +16,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw e
+      throw new Error(`Error from Pipedrive API: ${e.message}`)
     }
   }
 
@@ -33,7 +33,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw e
+      throw new Error(`Error from Pipedrive API: ${e.message}`)
     }
   }
 
@@ -50,7 +50,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw e
+      throw new Error(`Error from Pipedrive API: ${e.message}`)
     }
   }
 }
