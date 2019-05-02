@@ -34,7 +34,7 @@ export default class Connection {
     this.oauth2 = new OAuth2(auth, this.events)
   }
 
-  async endpoint(type: string): Promise<Deals> {
+  async endpoint(type: string): Promise<any> {
     await this.oauth2.preflight()
     if (!this.endpoints[type]) {
       throw Error(`No endpoint implemented for: ${type}.`)

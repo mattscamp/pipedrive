@@ -1,8 +1,24 @@
 import axios from 'axios'
 import * as qs from 'qs'
 import { formatParams } from './format'
+import { ApiError } from './error'
 
 export default class HttpHandler {
+  static handleError(error: any) {
+    if (error.response) {
+      throw new ApiError(
+        'BadResponse',
+        error.response.status,
+        'Pipedrive API returned an error',
+        error.response.data
+      )
+    } else if (error.request) {
+      throw new ApiError('NoResponse', null, 'Pipedrive API never returned', error.request)
+    } else {
+      throw new Error(error.message)
+    }
+  }
+
   static async get(url: string, data: any, authKey?: string): Promise<any> {
     try {
       const res = await axios({
@@ -16,7 +32,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw new Error(`Error from Pipedrive API: ${e.message}`)
+      this.handleError(e)
     }
   }
 
@@ -33,7 +49,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw new Error(`Error from Pipedrive API: ${e.message}`)
+      this.handleError(e)
     }
   }
 
@@ -50,7 +66,7 @@ export default class HttpHandler {
       })
       return res.data ? res.data : {}
     } catch (e) {
-      throw new Error(`Error from Pipedrive API: ${e.message}`)
+      this.handleError(e)
     }
   }
 }
