@@ -17,7 +17,7 @@ export default class Persons {
     visibleTo?: number,
     addTime?: string,
   }) {
-    const res = await HttpHandler.get(`${this.baseUrl}/find`, params, this.authToken)
+    const res = await HttpHandler.post(`${this.baseUrl}`, params, this.authToken)
     return res
   }
   
