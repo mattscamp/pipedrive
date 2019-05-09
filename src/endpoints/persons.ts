@@ -8,6 +8,19 @@ export default class Persons {
     this.authToken = authToken
   }
 
+  async add(params: {
+    name: string
+    ownerId?: number,
+    orgId?: number,
+    email?: string[],
+    phone?: string[],
+    visibleTo?: number,
+    addTime?: string,
+  }) {
+    const res = await HttpHandler.get(`${this.baseUrl}/find`, params, this.authToken)
+    return res
+  }
+  
   async find(params: {
     term: string
     orgId?: number
