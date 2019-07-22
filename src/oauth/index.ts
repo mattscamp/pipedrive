@@ -55,6 +55,19 @@ export class OAuth2 {
     }
   }
 
+  async revokeToken(token: string, type: 'refresh_token' | 'access_token'): Promise<null> {
+    await HttpHandler.post(
+      `${this.baseUrl}/token`,
+      {
+        token,
+        token_type_hint: type
+      },
+      this.authKey,
+      true
+    )
+    return (this._authState = null)
+  }
+
   async getToken(
     code: string,
     redirectUri: string
