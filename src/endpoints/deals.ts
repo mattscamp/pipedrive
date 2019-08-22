@@ -54,6 +54,7 @@ export default class Deals {
     userId?: number
     personId?: number
     orgId?: number
+    pipelineID?: number
     stageId?: number
     status?: number
     probability?: number
