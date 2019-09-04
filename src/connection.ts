@@ -7,7 +7,7 @@ import DealFields from './endpoints/deal-fields'
 import Users from './endpoints/users'
 import Stages from './endpoints/stages'
 import Notes from './endpoints/notes'
-
+import Recents from './endpoints/recents'
 export default class Connection {
   events: EventEmitter
   oauth2: OAuth2
@@ -18,7 +18,8 @@ export default class Connection {
     DealFields,
     Users,
     Stages,
-    Notes
+    Notes,
+    Recents
   }
 
   constructor(auth: {
