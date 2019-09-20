@@ -4,6 +4,7 @@ import Deals from './endpoints/deals'
 import Pipelines from './endpoints/pipelines'
 import Persons from './endpoints/persons'
 import DealFields from './endpoints/deal-fields'
+import PersonFields from './endpoints/person-fields'
 import Users from './endpoints/users'
 import Stages from './endpoints/stages'
 import Notes from './endpoints/notes'
@@ -16,6 +17,7 @@ export default class Connection {
     Pipelines,
     Persons,
     DealFields,
+    PersonFields,
     Users,
     Stages,
     Notes,
