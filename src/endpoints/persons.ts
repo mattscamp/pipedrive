@@ -8,6 +8,18 @@ export default class Persons {
     this.authToken = authToken
   }
 
+  async all(params?: {
+    userId?: number
+    filterId?: number
+    firstChar?: string
+    start?: number
+    limit?: number
+    sort?: string
+  }) {
+    const res = await HttpHandler.get(`${this.baseUrl}`, params, this.authToken)
+    return res
+  }
+
   async add(params: {
     name: string
     ownerId?: number
