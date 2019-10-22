@@ -130,7 +130,15 @@ export class OAuth2 {
     } else {
       const self = this
       await new Promise(resolve => {
-        self.emitter.on('refreshedToken', resolve)
+        self.emitter.on(
+          'refreshedToken',
+          (authState?: { accessToken: string; refreshToken: string; expirationTime: Date }) => {
+            if (authState) {
+              this._authState = authState
+            }
+            resolve()
+          }
+        )
         setTimeout(() => {
           return resolve()
         }, 1000 * 10)
