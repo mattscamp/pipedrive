@@ -24,17 +24,22 @@ export default class Connection {
     Recents
   }
 
-  constructor(auth: {
-    clientId: string
-    clientSecret: string
-    lastKnownAuthState?: {
-      accessToken: string
-      refreshToken: string
-      expirationTime: Date
+  constructor(
+    auth: {
+      clientId: string
+      clientSecret: string
+      lastKnownAuthState?: {
+        accessToken: string
+        refreshToken: string
+        expirationTime: Date
+      }
+    },
+    options?: {
+      setRefreshManually?: boolean
     }
-  }) {
+  ) {
     this.events = new EventEmitter()
-    this.oauth2 = new OAuth2(auth, this.events)
+    this.oauth2 = new OAuth2(auth, this.events, options)
   }
 
   async endpoint(type: string): Promise<any> {

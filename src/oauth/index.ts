@@ -5,6 +5,10 @@ export class OAuth2 {
   private emitter: EventEmitter
   private baseUrl: string = 'https://oauth.pipedrive.com/oauth'
   private authKey: string
+  private options: {
+    setRefreshManually?: boolean
+  }
+  _isRefreshing: boolean
   _authState?: {
     accessToken: string
     refreshToken: string
@@ -21,12 +25,17 @@ export class OAuth2 {
         expirationTime: Date
       }
     },
-    emitter: EventEmitter
+    emitter: EventEmitter,
+    options?: {
+      setRefreshManually?: boolean
+    }
   ) {
     this.emitter = emitter
     if (!auth.clientId || !auth.clientSecret) {
       throw Error('Both auth.clientId and auth.clientSecret are required fields.')
     }
+    this.options = options || {}
+    this._isRefreshing = false
     this._authState = auth.lastKnownAuthState
     this.authKey = new Buffer(`${auth.clientId}:${auth.clientSecret}`).toString('base64')
   }
@@ -100,6 +109,7 @@ export class OAuth2 {
     refreshToken: string
     expirationTime: Date
   }> {
+    this._isRefreshing = true
     const res = await HttpHandler.post(
       `${this.baseUrl}/token`,
       {
@@ -115,6 +125,18 @@ export class OAuth2 {
       expirationTime: this.generateExpiredDate(res.expires_in)
     }
     this.emitter.emit('refreshToken', this._authState)
+    if (!this.options.setRefreshManually) {
+      this._isRefreshing = false
+    } else {
+      const self = this
+      await new Promise(resolve => {
+        self.emitter.on('refreshedToken', resolve)
+        setTimeout(() => {
+          return resolve()
+        }, 1000 * 10)
+      })
+      this._isRefreshing = false
+    }
     return this._authState
   }
 
