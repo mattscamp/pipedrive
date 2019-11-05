@@ -38,6 +38,14 @@ export class OAuth2 {
     this._isRefreshing = false
     this._authState = auth.lastKnownAuthState
     this.authKey = new Buffer(`${auth.clientId}:${auth.clientSecret}`).toString('base64')
+    this.emitter.on(
+      'refreshedToken',
+      (authState?: { accessToken: string; refreshToken: string; expirationTime: Date }) => {
+        if (authState) {
+          this._authState = authState
+        }
+      }
+    )
   }
 
   get state(): {
@@ -125,26 +133,7 @@ export class OAuth2 {
       expirationTime: this.generateExpiredDate(res.expires_in)
     }
     this.emitter.emit('refreshToken', this._authState)
-    if (!this.options.setRefreshManually) {
-      this._isRefreshing = false
-    } else {
-      const self = this
-      await new Promise(resolve => {
-        self.emitter.on(
-          'refreshedToken',
-          (authState?: { accessToken: string; refreshToken: string; expirationTime: Date }) => {
-            if (authState) {
-              this._authState = authState
-            }
-            resolve()
-          }
-        )
-        setTimeout(() => {
-          return resolve()
-        }, 1000 * 10)
-      })
-      this._isRefreshing = false
-    }
+    this._isRefreshing = false
     return this._authState
   }
 
