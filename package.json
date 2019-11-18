@@ -1,6 +1,6 @@
 {
   "name": "pipedrive-api",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "",
   "keywords": [],
   "main": "dist/main.bundle.js",
