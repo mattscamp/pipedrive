@@ -7,6 +7,7 @@ export class OAuth2 {
   private authKey: string
   private options: {
     setRefreshManually?: boolean
+    prehook?: Function
   }
   _isRefreshing: boolean
   _authState?: {
@@ -28,6 +29,7 @@ export class OAuth2 {
     emitter: EventEmitter,
     options?: {
       setRefreshManually?: boolean
+      prehook?: Function
     }
   ) {
     this.emitter = emitter
@@ -66,6 +68,9 @@ export class OAuth2 {
   async preflight(): Promise<void> {
     if (!this._authState) {
       throw Error('You must get a token before making a request.')
+    }
+    if (this.options.prehook) {
+      await this.options.prehook()
     }
     if (new Date() >= this._authState.expirationTime) {
       await this.refreshToken(this._authState.refreshToken)
