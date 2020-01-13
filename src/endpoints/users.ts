@@ -8,6 +8,11 @@ export default class Users {
     this.authToken = authToken
   }
 
+  async all() {
+    const res = await HttpHandler.get(`${this.baseUrl}`, {}, this.authToken)
+    return res
+  }
+
   async me() {
     const res = await HttpHandler.get(`${this.baseUrl}/me`, {}, this.authToken)
     return res
