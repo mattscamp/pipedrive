@@ -10,6 +10,7 @@ export default class Activities {
 
   async add(params: {
     subject: string
+    note?: string
     type: string
     done?: number
     dueDate?: string
