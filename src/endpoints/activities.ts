@@ -12,15 +12,18 @@ export default class Activities {
     subject: string
     type: string
     done?: number
-    dueDate?: number
+    dueDate?: string
     dueTime?: string
     duration?: string
     userId?: string
     dealId?: string
-    personId?: string
-    participants?: string
     orgId?: number
-    note?: string
+    personId?: string
+    location?: string
+    participants?: []
+    busyFlag?: boolean
+    attendees?: []
+    publicDescription?: string
   }) {
     const res = await HttpHandler.post(`${this.baseUrl}`, params, this.authToken)
     return res
