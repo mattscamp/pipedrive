@@ -9,6 +9,9 @@ import Users from './endpoints/users'
 import Stages from './endpoints/stages'
 import Notes from './endpoints/notes'
 import Recents from './endpoints/recents'
+import Activities from './endpoints/activities'
+import ActivityFields from './endpoints/activity-fields'
+import ActivityTypes from './endpoints/activity-types'
 export default class Connection {
   events: EventEmitter
   oauth2: OAuth2
@@ -21,7 +24,10 @@ export default class Connection {
     Users,
     Stages,
     Notes,
-    Recents
+    Recents,
+    Activities,
+    ActivityFields,
+    ActivityTypes
   }
 
   constructor(
