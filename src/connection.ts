@@ -6,6 +6,7 @@ import Persons from './endpoints/persons'
 import DealFields from './endpoints/deal-fields'
 import PersonFields from './endpoints/person-fields'
 import Users from './endpoints/users'
+import Leads from './endpoints/leads'
 import Stages from './endpoints/stages'
 import Notes from './endpoints/notes'
 import Recents from './endpoints/recents'
@@ -27,7 +28,8 @@ export default class Connection {
     Recents,
     Activities,
     ActivityFields,
-    ActivityTypes
+    ActivityTypes,
+    Leads
   }
 
   constructor(
