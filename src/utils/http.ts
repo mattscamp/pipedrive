@@ -19,13 +19,13 @@ export default class HttpHandler {
     }
   }
 
-  static async get(url: string, data: any, authKey?: string): Promise<any> {
+  static async get(url: string, data: any, authKey?: string, isJson?: boolean): Promise<any> {
     try {
       const res = await axios({
         method: 'GET',
         url,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': isJson ? 'application/json' : 'application/x-www-form-urlencoded',
           Authorization: `Bearer ${authKey}`
         },
         params: formatParams(data)

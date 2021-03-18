@@ -9,7 +9,7 @@ export default class Leads {
   }
 
   async all(params?: { start?: number; limit?: number; archivedStatus?: string }) {
-    const res = await HttpHandler.get(`${this.baseUrl}`, params, this.authToken)
+    const res = await HttpHandler.get(`${this.baseUrl}`, params, this.authToken, true)
     return res
   }
 }
