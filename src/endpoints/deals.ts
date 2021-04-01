@@ -23,7 +23,7 @@ export default class Deals {
   }
 
   async find(params: { term: string; personId?: number; orgId?: number }) {
-    const res = await HttpHandler.get(`${this.baseUrl}/find`, params, this.authToken)
+    const res = await HttpHandler.get(`${this.baseUrl}/search`, params, this.authToken)
     return res
   }
 

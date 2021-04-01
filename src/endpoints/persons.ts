@@ -45,7 +45,7 @@ export default class Persons {
     limit?: number
     searchByEmail?: number
   }) {
-    const res = await HttpHandler.get(`${this.baseUrl}/find`, params, this.authToken)
+    const res = await HttpHandler.get(`${this.baseUrl}/search`, params, this.authToken)
     return res
   }
 
