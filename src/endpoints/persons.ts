@@ -40,10 +40,12 @@ export default class Persons {
 
   async find(params: {
     term: string
-    orgId?: number
+    organizationId?: number
+    exactMatch?: boolean
+    fields: string
+    includeFields: string
     start?: number
     limit?: number
-    searchByEmail?: number
   }) {
     const res = await HttpHandler.get(`${this.baseUrl}/search`, params, this.authToken)
     return res

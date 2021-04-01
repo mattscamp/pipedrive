@@ -22,7 +22,17 @@ export default class Deals {
     return res
   }
 
-  async find(params: { term: string; personId?: number; orgId?: number }) {
+  async find(params: {
+    term: string
+    personId?: number
+    organizationId?: number
+    exactMatch?: boolean
+    status?: string
+    fields: string
+    includeFields: string
+    start?: number
+    limit?: number
+  }) {
     const res = await HttpHandler.get(`${this.baseUrl}/search`, params, this.authToken)
     return res
   }
